@@ -1,0 +1,41 @@
+﻿@model IEnumerable<firestorm.Models.CompanyWorkOrders>
+
+@{
+    ViewBag.Title = "Summary Report";
+    Layout = "~/Views/Shared/Management_Layout.cshtml";
+}
+
+<h2>Summary Reports to be written</h2>
+
+<br /><br />
+<div class="row">
+    <div class="col-xs-3">
+        <h3>Company</h3>
+    </div>
+    <div class="col-xs-2">
+        <h3>WorkOrder ID</h3>
+    </div>
+    <div class="col-xs-4">
+        <br />
+    </div>
+</div>
+<br />
+
+@foreach(firestorm.Models.CompanyWorkOrders item in Model)
+{
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-3">
+            <h4>@item.Company.Name</h4>
+        </div>
+        <div class="col-xs-2">
+            <h4>@item.WorkOrder.OrderID</h4>
+        </div>
+        <div class="col-xs-4">
+            <br />
+            @Html.ActionLink("Write Report", "CreateReport", new { WorkOrderID = item.WorkOrder.OrderID, CompanyName = item.Company.Name}, new { @class="btn primary-btn"}) | 
+            @Html.ActionLink("Upload Report", "UploadReport", new { WorkOrderID = item.WorkOrder.OrderID, CompanyName = item.Company.Name }, new { @class = "btn primary-btn" })
+        </div>
+    </div>
+
+}

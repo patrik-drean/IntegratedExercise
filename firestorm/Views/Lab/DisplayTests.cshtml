@@ -1,0 +1,53 @@
+﻿@model IEnumerable<firestorm.Models.NewTestTube>
+
+@{
+    ViewBag.Title = "DisplayTests";
+    Layout = "~/Views/Shared/Lab_Layout.cshtml";
+}
+
+<h2>DisplayTests</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDue)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.LT)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.SequenceCode)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelitem => item.DateDue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.LT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.SequenceCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Schedule Test " + item.TestID + '-' + item.TestTubeID, "CreateTTube", new { id = item.TestID, lt = item.LT, sc = item.SequenceCode, asid = item.AssayID, ttid = item.TestTubeID})
+        </td>
+    </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

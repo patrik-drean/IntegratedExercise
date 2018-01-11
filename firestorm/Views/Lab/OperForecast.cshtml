@@ -1,0 +1,39 @@
+﻿@model IEnumerable<firestorm.Models.OperationForecastCompoundSample>
+
+@{
+    ViewBag.Title = "OperForecast";
+    Layout = "~/Views/Shared/Lab_Layout.cshtml";
+}
+
+<h2>Order Forecast</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("OrderID")
+        </th>
+        <th>
+            @Html.DisplayName("Date Due")
+        </th>
+        <th>
+            @Html.DisplayName("Estimated Arrival Date")
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateDue)
+        </td>
+        <td>
+           
+        </td>
+
+    </tr>
+}
+
+</table>

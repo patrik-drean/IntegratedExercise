@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Confirmation";
+    Layout = "~/Views/Shared/Customer_Layout.cshtml";
+}
+
+<h2> Thank you for your order @ViewBag.Name</h2>
+
+<h4>You will receive a notification to your email with your order details. <br />
+    Included is a copy of your work order. Please print this off and ship it with your components.
+    <br />
+    <br />
+
+    We will you keep you updated on the progress of your order.
+
+
+</h4>
+<br />
+@Html.ActionLink("Check Order Status", "TrackOrder", null, new { @class = "btn btn-large btn-primary" })
+
+
+

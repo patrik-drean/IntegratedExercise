@@ -1,0 +1,56 @@
+﻿@model IEnumerable<firestorm.Models.Ticket>
+
+@{
+    ViewBag.Title = "Manage Tickets";
+    Layout = "~/Views/Shared/Management_Layout.cshtml";
+}
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Priority.PriorityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateSubmitted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkOrder.OrderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.DateResolved == null)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Priority.PriorityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateSubmitted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkOrder.OrderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.LastName), @Html.DisplayFor(modelItem => item.User.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @Html.ActionLink("Resolve", "ResolveTicket", new { id = item.TicketID })
+                </td>
+            </tr>
+        }
+    }
+
+</table>

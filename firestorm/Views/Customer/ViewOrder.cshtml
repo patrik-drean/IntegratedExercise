@@ -1,0 +1,74 @@
+﻿@model firestorm.Models.WorkOrderCompoundSample
+
+@{
+    ViewBag.Title = "ViewOrder";
+    Layout = "~/Views/Shared/Customer_Layout.cshtml";
+    int iCount = 1;
+}
+
+<h2>Order Progress - Order #@Model.workOrder.OrderID</h2>
+<h3>Order for @ViewBag.Name, representing @ViewBag.CompanyName <br /> <br />
+    Total amount of compounds to be tested: @Model.compoundSampleSampleTests.Count() <br />
+    Total overall amount of tests: @ViewBag.TotalTest
+</h3>
+<br /><br />
+
+@foreach (var Compound in Model.compoundSampleSampleTests)
+{
+    if (iCount == 1)
+    {
+        <h2>@Model.compound.Name</h2>
+    }
+    else
+    {
+        <label class="col-md-2">Compound @iCount</label>
+    }
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.compoundSampleSampleTests.ElementAt(0).sampleTests.ElementAt(0).TestTubeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.compoundSampleSampleTests.ElementAt(0).sampleTests.ElementAt(0).SequenceCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.compoundSampleSampleTests.ElementAt(0).sampleTests.ElementAt(0).AssayID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.compoundSampleSampleTests.ElementAt(0).sampleTests.ElementAt(0).CompletedTest)
+        </th>
+    </tr>
+
+
+
+@foreach (var SampleTest in Compound.sampleTests)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => SampleTest.TestTubeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => SampleTest.SequenceCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => SampleTest.AssayID)
+        </td>
+        <td>
+            @if(SampleTest.CompletedTest == "n" || SampleTest.CompletedTest == null || SampleTest.CompletedTest == "0")
+            {
+                <p>No</p>
+            }
+            else
+            {
+                <p>Yes</p>
+            }
+        </td>
+
+    </tr>
+}
+
+</table>
+        iCount++;
+    <br /><br />
+}

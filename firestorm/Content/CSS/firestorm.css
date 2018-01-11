@@ -1,0 +1,86 @@
+﻿/*******************General Styling*****************/
+
+body 
+{
+}
+
+.navbar 
+{
+    background-color: rgb(50, 118, 180);
+    border: none;
+
+}
+.navbar a 
+{
+    color: white !important;
+}
+.navbar .dropdown-menu a {
+        color: black !important;
+    }
+.navbar a:hover
+{
+    color: rgb(5, 61, 111)  !important;
+}
+.navbar-brand
+{
+    font-size: 26px;
+}
+h2 
+{
+    color:rgb(5, 61, 111);
+    font-family: 'MS Gothic';
+}
+
+.dropnav
+{
+    color: black;
+}
+
+/*******************Home Controller*****************/
+
+/******Landing Page*******/
+.LandingImgDiv 
+{
+    width: 1500px;
+    margin: 0 auto;
+}
+
+.LandingImg
+{
+    width:75%;
+    z-index:-1; 
+
+}
+
+.LandingCatchDiv 
+{
+    background-color: rgba(180, 187, 198, 0.3);
+    width: 300px;
+    height: 70px;
+    position:absolute;
+    top:400px;
+    left: 180px;
+
+}
+.LandingCatchDiv h2
+{
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+
+#AssayID, input[type=date], input[id = workOrder_Comments] 
+{
+    position: relative;
+    top: 8px;
+}
+
+#AssayList
+{
+    position:absolute;
+    top: 410px;
+    left: 800px;
+    border: 1px solid blue;
+    padding: 0 5px 2px 5px;
+}

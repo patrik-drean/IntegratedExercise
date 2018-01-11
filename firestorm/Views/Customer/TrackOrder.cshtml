@@ -1,0 +1,40 @@
+﻿@model IEnumerable<firestorm.Models.WorkOrder>
+
+@{
+    ViewBag.Title = "TrackOrder";
+    Layout = "~/Views/Shared/Customer_Layout.cshtml";
+}
+
+<h2>@ViewBag.CompanyName</h2>
+<!--
+<p>
+    //Html.ActionLink("Create New", "Create")
+</p>
+    -->
+<table class="table">
+    <tr>
+        <th class="col-xs-3">
+            @Html.DisplayNameFor(model => model.OrderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            
+            @Html.DisplayFor(modelItem => item.OrderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </td>
+        <td>
+            @Html.ActionLink("Order Progress", "ViewOrder", new { OrderID=item.OrderID })
+        </td>
+    </tr>
+}
+
+</table>

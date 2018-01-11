@@ -1,0 +1,111 @@
+﻿@model firestorm.Models.WorkOrderCompoundSample
+@{
+    ViewBag.Title = "RequestOrderNumber";
+    Layout = "~/Views/Shared/Customer_Layout.cshtml";
+}
+
+<h2>Request Order</h2>
+<br />
+@using (Html.BeginForm("RequestOrderNumber", "Customer", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(item => Model.compound.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(item => Model.compound.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(item => Model.compound.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">How many compounds are to be tested?</label>
+            <div class="col-md-9">
+                @Html.DropDownList("CompoundCount")
+
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-10">
+                <input type="submit" value="Next" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<br /><br /><br />
+@if (Model != null)
+{
+    <h2>Indicate the number of assays are desired for each compound</h2>
+    <br /><br />
+    using (Html.BeginForm("RequestOrderTests", "Customer", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            @{ 
+                int iCount = 1;
+                int iCount2 = 0;
+                foreach (var Item in Model.compoundSampleSampleTests)
+                {
+              
+
+            <div class="form-group">
+
+                @if (iCount == 1)
+                {
+                <label class="col-md-2">@Model.compound.Name</label>
+                }
+                else
+                {
+                <label class="col-md-2">Compound @iCount</label>
+                }
+               
+                <div class="col-md-9">
+                    @Html.DropDownList("TestCount")
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <label class="col-md-2">Weight of Compound</label>
+                <div class="col-md-9">
+                   <input name="Weight" />
+                </div>
+            </div>
+            <br />
+                    iCount++;
+                }
+
+            }
+            <div id="AssayList">
+                <h3>Available Assays</h3>
+                <table>
+                    @{ 
+                        foreach (var Item in ViewBag.DisplayAssayList)
+                        {
+                    <tr>
+                        <td>@Item.Name</td>
+                    </tr>
+                            }
+                        }
+                </table>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-10">
+                    <input type="submit" value="Next" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+ }
